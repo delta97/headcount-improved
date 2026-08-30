@@ -19,6 +19,7 @@
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 /* ── Configure these three for your repo ──────────────────────────────────── */
 const MAP_FILE = process.env.AGENT_MAP ?? 'docs/AGENT-SURFACES.md';
@@ -346,12 +347,16 @@ function diff(agentId, base) {
 }
 
 /* ── main ───────────────────────────────────────────────────────────────────── */
-const [mode, ...rest] = process.argv.slice(2);
-const baseIdx = rest.indexOf('--base');
-const base = baseIdx === -1 ? null : rest[baseIdx + 1];
-if (mode === 'check') check();
-else if (mode === 'diff') diff(rest[0], base);
-else {
-  console.error('usage: agent-guard.mjs check | diff <agent-id> [--base <ref>]');
-  process.exit(2);
+// Guarded so the exported pieces (globToRegExp, parseSurfaceMap) are importable by tests
+// without the CLI running — an import used to hit the usage error and exit(2).
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const [mode, ...rest] = process.argv.slice(2);
+  const baseIdx = rest.indexOf('--base');
+  const base = baseIdx === -1 ? null : rest[baseIdx + 1];
+  if (mode === 'check') check();
+  else if (mode === 'diff') diff(rest[0], base);
+  else {
+    console.error('usage: agent-guard.mjs check | diff <agent-id> [--base <ref>]');
+    process.exit(2);
+  }
 }

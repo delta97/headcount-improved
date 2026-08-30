@@ -19,8 +19,18 @@ run() {
 
 run "Surface map is coherent" \
   node plugins/executive/skills/agent-hierarchy/scripts/agent-guard.mjs check
+# Unit tests run before the artifact checks: if the validators or generators themselves are
+# broken, every check after this point is reporting from a broken instrument.
+run "Unit tests (Node)" \
+  node --test tests/agent-guard.test.mjs
+run "Unit tests (Python)" \
+  python3 -m unittest discover -s tests -t . -q
 run "Skill frontmatter is valid" \
   python3 scripts/validate-skills.py
+run "Catalog is consistent" \
+  python3 scripts/validate-catalog.py
+run "Marketplace is current" \
+  python3 scripts/build-marketplace.py --check
 run "No third-party license text" \
   python3 scripts/check-provenance.py
 run "README is current" \
@@ -29,6 +39,8 @@ run "Social card is current" \
   python3 scripts/build-social-card.py --check
 run "Org chart is current" \
   python3 scripts/build-org-chart.py --check
+run "Routing eval fixtures are valid" \
+  python3 scripts/validate-routing-evals.py
 run "Skill references resolve" \
   python3 scripts/check-skill-refs.py
 run "US English spelling" \

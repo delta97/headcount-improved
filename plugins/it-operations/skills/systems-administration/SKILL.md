@@ -1,6 +1,6 @@
 ---
 name: systems-administration
-description: Runs servers and corporate systems — patching, configuration baselines, change control, capacity, and the routine that prevents incidents. Use this to establish a patching cadence, standardize server configuration, plan a maintenance window, decide change control for infrastructure, or clean up systems that have drifted from any known state.
+description: Runs servers and corporate systems — patching, configuration baselines, change control, capacity, and the routine that prevents incidents. Use this to establish a patching cadence, standardize server configuration, plan a maintenance window, decide change control for infrastructure, or clean up systems that have drifted from any known state. For designing the product's cloud environments, prefer `technology:cloud-infrastructure`.
 ---
 
 # Systems administration

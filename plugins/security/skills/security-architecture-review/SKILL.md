@@ -1,6 +1,6 @@
 ---
 name: security-architecture-review
-description: Reviews a design or change for security before it ships — authentication and authorization, data handling, secrets, dependencies, and the secure-development practices around it. Use this to review an architecture or pull request for security, set secure coding standards, choose or tune SAST and DAST tooling, assess a third-party integration, or decide whether a design is safe to build.
+description: Reviews a design or change for security before it ships — authentication and authorization, data handling, secrets, dependencies, and the secure-development practices around it. Use this to review an architecture or pull request for security, set secure coding standards, choose or tune SAST and DAST tooling, assess a third-party integration, or decide whether a design is safe to build. For general architectural soundness with no security question in play, prefer `technology:solution-architecture`.
 ---
 
 # Security architecture review

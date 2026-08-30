@@ -50,14 +50,25 @@ departments are split by exclusive write surface rather than by topic.
 ./scripts/check-all.sh
 ```
 
-Four checks, the same ones CI runs:
+The checks, the same ones CI runs. (A test in `tests/test_docs_current.py` fails the build if
+this table and `check-all.sh` disagree, so the list below is the executed list.)
 
 | Check | What it enforces |
 |---|---|
-| Surface map | Every tracked path has exactly one owner |
-| Skill frontmatter | `name` equals the directory name, lowercase-hyphenated, unique, description substantial |
-| Provenance | No license headers, copyright notices, license-named files, or font assets |
-| Generated docs | README and org-chart tables match the tree |
+| Surface map is coherent | Every tracked path has exactly one owner; roster, charters, and authority agree |
+| Unit tests (Node) | `agent-guard.mjs` glob, parsing, check, and diff behavior against broken-map fixtures |
+| Unit tests (Python) | Validators and generators against edge-case fixtures, plus these doc-drift guards |
+| Skill frontmatter is valid | `name` equals the directory name, lowercase-hyphenated, unique per department, description substantial, only supported frontmatter |
+| Catalog is consistent | `config/departments.json` agrees with the plugin tree, every manifest, the roster, and the charters |
+| Marketplace is current | `.claude-plugin/marketplace.json` matches regeneration from the registry |
+| No third-party license text | No license headers, copyright notices, license-named files, or font assets |
+| README is current | README and org-chart tables match regeneration from the tree |
+| Social card is current | The social card matches regeneration |
+| Org chart is current | The interactive org chart matches regeneration |
+| Routing eval fixtures are valid | Every eval case resolves, coverage is complete or explicitly declined |
+| Skill references resolve | Every `department:skill` mentioned in the docs exists |
+| US English spelling | House style — no British spellings |
+| Manifests parse | Marketplace and plugin manifests are valid JSON |
 
 **Stage your files first.** The surface guard reads `git ls-files`, so an unstaged file is invisible
 to it — the check will pass and then fail once committed. The script warns when untracked files are
@@ -66,10 +77,18 @@ present.
 ## Adding a skill
 
 1. `plugins/<department>/skills/<skill-name>/SKILL.md`
-2. Frontmatter `name` must equal the directory name.
+2. Frontmatter `name` must equal the directory name. Skills are addressed as `department:skill`,
+   so a name only has to be unique within its department — but check the note the validator
+   prints if the bare name already exists elsewhere, and make sure the two descriptions cannot
+   match the same request.
 3. Check nothing already covers the ground. Two skills whose descriptions both match a request means
    neither reliably wins — prefer extending an existing skill, or folding a family into one skill
-   with references, over adding a near-neighbour.
+   with references, over adding a near-neighbor.
+4. Add at least one positive routing case to `evals/routing/cases.jsonl` — a request, phrased the
+   way someone would actually ask it, that should load the skill. If the skill has a near-neighbor,
+   add a case that should load the neighbor with your skill in `forbidden`. If you genuinely cannot
+   write a case yet, add the skill to `evals/routing/uncovered.txt` — the check fails if you do
+   neither, and that is deliberate.
 
 ## House style
 
@@ -85,14 +104,19 @@ The list is of exact word forms, not stems, because stems are a trap here: *anal
 All five, in the same change, or the check fails:
 
 1. `plugins/<name>/skills/` and `plugins/<name>/.claude-plugin/plugin.json`
-2. A roster row and a `surface:` block in `docs/AGENT-SURFACES.md`
-3. A charter at `.claude/agents/<name>.md`
-4. An entry in `.claude-plugin/marketplace.json`
-5. A `(rank, title, executive)` entry in `META` in `scripts/build-readme.py`, then regenerate with
-   `python3 scripts/build-readme.py`
+2. An entry in `config/departments.json` — the canonical registry: rank, title, executive,
+   category, reviewer classification, description, version, keywords. The manifest in step 1 must
+   carry the same description, version, and keywords, or `validate-catalog.py` fails.
+3. A roster row and a `surface:` block in `docs/AGENT-SURFACES.md`
+4. A charter at `.claude/agents/<name>.md`
+5. Regenerate the derived files: `python3 scripts/build-marketplace.py` (the marketplace is
+   generated from the registry — never edit `.claude-plugin/marketplace.json` by hand),
+   `python3 scripts/build-readme.py`, and a glyph in `scripts/build-org-chart.py` followed by
+   `python3 scripts/build-org-chart.py`.
 
-The generator reads the department list off disk and refuses to run until step 5 is done, so a new
-department cannot end up missing from the README and the org chart while the checks still pass.
+The generators read the registry and cross-check it against the plugin tree, refusing to run while
+the two disagree, so a new department cannot end up missing from the README, the org chart, or the
+marketplace while the checks still pass.
 
 Give it a chief before any specialists — the department's remit should exist before things are added
 to it.

@@ -142,6 +142,9 @@ CONTRIBUTING.md
 .gitattributes
 docs/**
 scripts/**
+config/**
+evals/**
+tests/**
 .github/**
 .claude/**
 .claude-plugin/**

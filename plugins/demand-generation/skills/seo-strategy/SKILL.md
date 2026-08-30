@@ -1,6 +1,6 @@
 ---
 name: seo-strategy
-description: Audits and improves organic search performance — technical health, site architecture, internal linking, structured data, and the content decisions that determine what can rank. Use this to run an SEO audit, diagnose why pages are not ranking or were deindexed, plan a site's URL and navigation structure, add structured data, or prioritize which SEO fixes are worth doing.
+description: Audits and improves organic search performance — technical health, site architecture, internal linking, structured data, and the content decisions that determine what can rank. Use this to run an SEO audit, diagnose why pages are not ranking or were deindexed, plan a site's URL and navigation structure, add structured data, or prioritize which SEO fixes are worth doing. For emitting many templated pages from a dataset, use `programmatic-seo`.
 ---
 
 # SEO strategy

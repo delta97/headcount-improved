@@ -1,6 +1,6 @@
 ---
 name: marketing-planning
-description: Builds the marketing plan of record — objectives, channel mix, budget allocation, sequencing, and the measurement that says whether it worked. Use this for annual or quarterly planning, when budget must be allocated or defended, when marketing activity feels busy but undirected, or when a plan needs pressure-testing before commitment.
+description: Builds the marketing plan of record — objectives, channel mix, budget allocation, sequencing, and the measurement that says whether it worked. Use this for annual or quarterly planning, when budget must be allocated or defended, when marketing activity feels busy but undirected, or when a plan needs pressure-testing before commitment. For a single bounded launch or campaign, use `marketing-campaign-planner`.
 ---
 
 # Marketing planning

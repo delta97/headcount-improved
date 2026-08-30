@@ -1,6 +1,6 @@
 ---
 name: dependency-and-risk-management
-description: Manages delivery risk and cross-team dependencies — identifying, sizing, mitigating and escalating what could stop the work. Use this to build a risk register that gets used, manage dependencies between teams, decide what to escalate and when, or work out why the same risks keep materialising unmanaged.
+description: Manages delivery risk and cross-team dependencies — identifying, sizing, mitigating and escalating what could stop the work. Use this to build a risk register that gets used, manage dependencies between teams, decide what to escalate and when, or work out why the same risks keep materializing unmanaged. For the organization-wide risk framework rather than delivery risk, prefer `legal-risk:enterprise-risk`.
 ---
 
 # Dependency and risk management

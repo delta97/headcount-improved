@@ -1,6 +1,6 @@
 ---
 name: project-delivery
-description: Plans and delivers a single project — scope, estimation, scheduling, critical path, tracking, and recovering when it slips. Use this to plan a project, build or challenge a schedule, estimate credibly, track progress meaningfully, or recover a project that is late.
+description: Plans and delivers a single project — scope, estimation, scheduling, critical path, tracking, and recovering when it slips. Use this to plan a project, build or challenge a schedule, estimate credibly, track progress meaningfully, or recover a project that is late. For redesigning a recurring operational process rather than delivering a bounded piece of work, prefer `operations:process-design`.
 ---
 
 # Project delivery

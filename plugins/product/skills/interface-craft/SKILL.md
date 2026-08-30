@@ -1,6 +1,6 @@
 ---
 name: interface-craft
-description: Raises the visual and interaction quality of an interface — layout, hierarchy, type, spacing, density, and the details that separate a considered product from a generic one. Use this when a screen works but looks unfinished or default, when a layout feels crowded or arbitrary, when a page has no clear focal point, or when an interface needs to feel trustworthy rather than merely functional.
+description: Raises the visual and interaction quality of an interface — layout, hierarchy, type, spacing, density, and the details that separate a considered product from a generic one. Use this when a screen works but looks unfinished or default, when a layout feels crowded or arbitrary, when a page has no clear focal point, or when an interface needs to feel trustworthy rather than merely functional. For a staged upgrade of a whole existing UI rather than the craft of a screen, use `interface-redesign`; for finding problems rather than raising quality, use `ux-product-auditor`.
 ---
 
 # Interface craft

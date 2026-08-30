@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Headcount routing evaluation case",
+  "description": "One line of cases.jsonl. This schema documents the shape for humans and external tooling; scripts/validate-routing-evals.py is the authoritative checker and additionally verifies what a schema cannot — that every referenced skill exists on disk, that ids are unique across the file, and that every installed skill is covered or explicitly exempted.",
+  "type": "object",
+  "required": ["id", "prompt", "expected", "acceptable", "forbidden", "tags"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Unique, stable, lowercase-hyphenated. Never reuse an id: results are compared across runs by id."
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 15,
+      "description": "The natural-language request, written the way someone would actually ask it."
+    },
+    "expected": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/skillRef"},
+      "description": "The skill(s) that should activate. The first entry is the ideal answer; recall is measured against this list. Empty for ambiguous or negative-only cases."
+    },
+    "acceptable": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/skillRef"},
+      "description": "Selections that pass without being the ideal answer — legitimate ambiguity, recorded rather than papered over."
+    },
+    "forbidden": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/skillRef"},
+      "description": "Skills that must NOT activate for this prompt. A forbidden selection fails the case regardless of anything else."
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+      "description": "Free grouping labels: a department, plus markers like positive, negative, ambiguous, near-neighbor, boundary, underspecified, expert-phrasing, readme-example."
+    }
+  },
+  "definitions": {
+    "skillRef": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*:[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "A department:skill address that must resolve to plugins/<department>/skills/<skill>/SKILL.md."
+    }
+  }
+}

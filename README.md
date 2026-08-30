@@ -47,11 +47,17 @@ right specialist engages:
 | You ask | What loads |
 |---|---|
 | "why isn't this landing page converting?" | `demand-generation:landing-page-cro-expert` |
-| "review this design before we build it" | `security:threat-modeling` |
+| "review this onboarding flow before we build it" | `product:ux-product-auditor` |
+| "review this authentication architecture before we build it" | `security:threat-modeling` |
 | "can we afford this hire?" | `finance:unit-economics` |
 | "our growth has stalled" | `executive:business-growth-consultant` |
 
 Invoke one directly by name when you want a specific lens: `/finance:financial-modeling`.
+
+Skill selection is measured rather than assumed: [evals/routing/](evals/README.md) holds
+routing cases — realistic requests with expected and forbidden skills — concentrated on the
+ambiguous boundaries. The fixtures are validated on every PR; a live-model run reports
+pass rate, per-skill precision and recall, and confusion pairs.
 
 Seven situations that cross departments — a SOC 2 demand from an enterprise prospect, a
 security incident, a stalled funnel — are worked through end to end in
@@ -341,20 +347,31 @@ and the CLO report to the chief executive rather than into the function they ove
 ## How it is organized
 
 ```
+config/departments.json        canonical department metadata — the marketplace, README,
+                               and org chart are generated from it and checked in CI
 plugins/<department>/
-  .claude-plugin/plugin.json   department manifest
+  .claude-plugin/plugin.json   department manifest, validated against the registry
   skills/<skill>/SKILL.md      frontmatter name equals the directory name
 .claude/agents/<id>.md         one charter per department
+docs/ARCHITECTURE.md           the runtime concepts and the two control planes
 docs/AGENT-SURFACES.md         every path has exactly one owner, enforced in CI
 docs/DECISION-LOG.md           numbered decisions with options and recommendations
 docs/USE-CASES.md              situations worked end to end across departments
+docs/EXTENDING-HEADCOUNT.md    what the architecture can support next, kept separate
+                               from what it does today
 docs/org-chart.html           interactive org chart, searchable across every skill
 docs/index.html               GitHub Pages entry point, redirects to the chart
+evals/routing/                 routing eval cases and the coverage ratchet
+tests/                         unit tests for the validators and generators themselves
 ```
 
 Agents split by **exclusive write surface**, not by topic — a topic split has no checkable
 boundary, and two agents working on "SEO" and "UI" both end up in the same file. See
-`executive:agent-hierarchy` for the method.
+`executive:agent-hierarchy` for the method, and
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how the pieces fit: the static control
+plane (structure, ownership, metadata — enforced on every PR) and the behavioral control
+plane (routing quality — measured by evals). A valid skill is not necessarily a useful
+skill; the repository checks both.
 
 ## Contributing
 
@@ -362,15 +379,19 @@ boundary, and two agents working on "SEO" and "UI" both end up in the same file.
 ./scripts/check-all.sh
 ```
 
-Verifies the surface map is coherent, every skill's frontmatter is valid and unique, no
-third-party license text has appeared, the generated README and social card are current, every
-`department:skill` reference in the docs resolves, spelling is US English, and every manifest
-parses. CI runs the same
-script, so local and CI cannot drift.
+One entry point, local and CI alike, so the two cannot drift. It runs the unit tests for the
+validators themselves, then verifies: the surface map is coherent, every skill's frontmatter is
+valid under the supported subset, the catalog (registry, manifests, marketplace, roster,
+charters) agrees with itself, the routing eval fixtures resolve and cover every skill or
+decline it explicitly, no third-party license text has appeared, the generated README, org
+chart, social card and marketplace are current, every `department:skill` reference in the docs
+resolves, spelling is US English, and every manifest parses.
 
-A new department needs its roster row in `docs/AGENT-SURFACES.md`, a surface block, a charter in
-`.claude/agents/`, and an entry in `.claude-plugin/marketplace.json` — all in the same change, or
-the check fails.
+A new department needs its registry entry in `config/departments.json`, its roster row and
+surface block in `docs/AGENT-SURFACES.md`, a charter in `.claude/agents/`, and regenerated
+artifacts — all in the same change, or the check fails. A new skill needs a routing eval case,
+or a deliberate line in `evals/routing/uncovered.txt`. See
+[CONTRIBUTING.md](CONTRIBUTING.md) for the exact steps.
 
 ## Writing
 

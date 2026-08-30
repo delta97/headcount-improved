@@ -1,6 +1,6 @@
 ---
 name: marketing-analytics
-description: Sets up, audits, and reports on marketing measurement — tracking plans, event schemas, attribution models, and the dashboards built on them. Use this to instrument a site or product, audit tracking nobody trusts, choose or interpret an attribution model, build reporting that answers a specific question, or reconcile numbers that disagree between tools.
+description: Sets up, audits, and reports on marketing measurement — tracking plans, event schemas, attribution models, and the dashboards built on them. Use this to instrument a site or product, audit tracking nobody trusts, choose or interpret an attribution model, build reporting that answers a specific question, or reconcile numbers that disagree between tools. For company-wide KPI reporting beyond marketing measurement, prefer `data-analytics:business-intelligence`.
 ---
 
 # Marketing analytics

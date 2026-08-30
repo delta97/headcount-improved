@@ -1,6 +1,6 @@
 ---
 name: business-intelligence
-description: Builds reporting and self-serve analytics that people actually use — metric trees, dashboard design, distribution, and the discipline that stops dashboards proliferating. Use this to build a dashboard or report, design a metrics framework, set up self-serve analytics, decide what to measure, or diagnose why reporting exists but nobody uses it or trusts it.
+description: Builds reporting and self-serve analytics that people actually use — metric trees, dashboard design, distribution, and the discipline that stops dashboards proliferating. Use this to build a dashboard or report, design a metrics framework, set up self-serve analytics, decide what to measure, or diagnose why reporting exists but nobody uses it or trusts it. For channel attribution and marketing measurement specifically, prefer `demand-generation:marketing-analytics`.
 ---
 
 # Business intelligence

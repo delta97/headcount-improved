@@ -15,7 +15,8 @@ The fastest path is to just ask. Skills load themselves when a request matches.
 |---|---|
 | "why isn't this landing page converting?" | `demand-generation:landing-page-cro-expert` |
 | "can we afford this hire?" | `finance:unit-economics` |
-| "review this design before we build it" | `security:threat-modeling` |
+| "review this onboarding flow before we build it" | `product:ux-product-auditor` |
+| "review this authentication architecture before we build it" | `security:threat-modeling` |
 | "our growth has stalled" | `executive:business-growth-consultant` |
 | "is this contract term normal?" | `legal-risk:contract-review` |
 | "how should we level this role?" | `people:compensation-and-leveling` |
@@ -146,3 +147,9 @@ three departments a situation touches:
 **Delegate a whole department.** Each ships an agent charter in `.claude/agents/`, so a department
 can be handed work as a subagent with its own exclusive write surface — see
 `executive:agent-hierarchy` for the method and why surfaces, not topics, are the split.
+
+**These situations are the seed of something more formal.** Each one already implies an
+initiating department, participants, required reviewers, and a handoff order. The path from
+this prose to machine-readable workflow recipes — declared, validated, and dispatchable — is
+described in [EXTENDING-HEADCOUNT.md](EXTENDING-HEADCOUNT.md); nothing there exists yet, which
+is the point of keeping that page separate.
