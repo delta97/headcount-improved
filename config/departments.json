@@ -24,6 +24,23 @@
       ]
     },
     {
+      "id": "chief-of-staff",
+      "title": "Chief of Staff",
+      "executive": "CoS",
+      "rank": 15,
+      "category": "executive",
+      "reviewer_class": false,
+      "description": "The owner's personal operating layer: open-item rollups, manager status updates, 1:1 preparation, AI portfolio operations, executive position papers, requirements-to-Jira decomposition, platform export formatting, and accomplishment tracking.",
+      "version": "1.0.0",
+      "keywords": [
+        "chief-of-staff",
+        "productivity",
+        "status-updates",
+        "portfolio",
+        "work-management"
+      ]
+    },
+    {
       "id": "technology",
       "title": "Technology",
       "executive": "CTO / CIO",

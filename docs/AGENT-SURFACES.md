@@ -38,6 +38,7 @@ this map will have more of them than this one does.
 ```roster
 # id                class      status     authority
 executive            builder    installed  autonomous
+chief-of-staff       builder    installed  autonomous
 technology           builder    installed  autonomous
 product              builder    installed  autonomous
 marketing            builder    installed  autonomous
@@ -74,6 +75,10 @@ answered it.
 
 ```surface:executive
 plugins/executive/**
+```
+
+```surface:chief-of-staff
+plugins/chief-of-staff/**
 ```
 
 ```surface:technology

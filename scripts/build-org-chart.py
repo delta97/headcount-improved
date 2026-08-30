@@ -48,6 +48,7 @@ REVIEWER = {d["id"] for d in _DEPTS if d["reviewer_class"]}
 # their text is what the chart looked like before, and nothing anchored the eye.
 GLYPHS = {
     "executive": "M4 20h16M6 20V9l6-4 6 4v11M10 20v-5h4v5",
+    "chief-of-staff": "M9.5 4.5H6V20.5h12V4.5h-3.5M9.5 3h5v3h-5zM9 10.5h6M9 14h6M9 17.5h3.5",
     "technology": "M9 8l-4 4 4 4M15 8l4 4-4 4",
     "it-operations": "M3.5 5h17v10.5h-17zM9.5 20h5M12 15.5V20",
     "security": "M12 3.2l7 2.8v5.4c0 4.3-2.9 7.4-7 8.8-4.1-1.4-7-4.5-7-8.8V6z",
