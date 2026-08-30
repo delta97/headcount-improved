@@ -1,0 +1,70 @@
+# Skills with no positive routing case yet.
+#
+# This file is a ratchet, not a parking lot. validate-routing-evals.py fails when a skill is
+# neither covered by a case in cases.jsonl nor listed here, and fails again when a listed
+# skill gains coverage — so the list can only shrink knowingly, and a new skill must arrive
+# with either an eval case or a deliberate line here. Prefer the case: a skill nobody can
+# describe a triggering request for is a skill that will not trigger.
+#
+# One department:skill per line. Comments start with '#'.
+corporate-strategy:chief-strategy-officer
+corporate-strategy:strategic-alliances
+customer-experience:chief-customer-officer
+customer-experience:self-service-and-knowledge
+data-analytics:chief-data-officer
+demand-generation:ai-search-optimization
+demand-generation:app-store-optimization
+demand-generation:lead-capture
+demand-generation:listing-distribution
+executive:ai-research-analyst
+executive:chief-executive
+executive:saas-idea-validator
+finance:chief-financial-officer
+finance:financial-reporting-and-close
+finance:internal-controls-and-audit
+finance:treasury-and-liquidity
+it-operations:chief-information-officer
+it-operations:endpoint-management
+it-operations:it-asset-management
+legal-risk:chief-legal-and-risk-officer
+legal-risk:corporate-governance
+marketing:behavioral-marketing
+marketing:chief-content-officer
+marketing:chief-marketing-officer
+marketing:customer-research
+marketing:events-and-field-marketing
+marketing:partnership-marketing
+marketing:public-relations
+marketing:social-post-craft
+marketing:video-content
+marketing:visual-content
+marketing:youtube-producer
+operations:chief-operating-officer
+operations:facilities-and-workplace
+operations:quality-management
+operations:supply-chain-and-logistics
+people:benefits-and-leave
+people:chief-human-resources-officer
+people:learning-and-development
+people:onboarding-and-offboarding
+people:performance-management
+people:workforce-planning
+pmo:benefits-realization
+pmo:change-and-adoption
+pmo:head-of-pmo
+product:chief-product-officer
+product:presentation-design
+revenue:chief-revenue-officer
+revenue:referral-programs
+security:chief-information-security-officer
+technology:ai-workflow-architect
+technology:branch-and-worktree-workflow
+technology:chief-technology-officer
+technology:completion-verification
+technology:implementation-planning
+technology:parallel-agent-delivery
+technology:prompt-optimizer
+technology:release-and-deployment
+technology:skill-authoring
+technology:solution-exploration
+technology:technical-debt-management

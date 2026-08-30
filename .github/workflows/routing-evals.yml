@@ -1,0 +1,46 @@
+name: routing-evals
+
+# Live routing evaluation against a real model. Deliberately NOT part of ordinary CI:
+# pull requests must never require paid API calls or repository secrets — checks.yml runs
+# the deterministic fixture validation instead. Trigger this by hand (or restore the
+# schedule below) when descriptions change and you want the behavioral numbers.
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: Model to evaluate against
+        required: false
+        default: claude-sonnet-5
+      runs:
+        description: Samples per case
+        required: false
+        default: "1"
+  # schedule:
+  #   - cron: "0 6 * * 1"   # weekly, once the ANTHROPIC_API_KEY secret exists
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Validate fixtures first
+        run: python3 scripts/validate-routing-evals.py
+      - name: Run live evaluation
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ANTHROPIC_API_KEY secret is not configured — nothing to run." >&2
+            exit 1
+          fi
+          python3 scripts/run-routing-evals.py \
+            --model "${{ inputs.model }}" \
+            --runs "${{ inputs.runs }}" \
+            --json routing-results.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: routing-results
+          path: routing-results.json
