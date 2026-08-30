@@ -43,7 +43,21 @@ family into one skill with references, over adding a near-neighbor.
 - One skill, one directory, `SKILL.md` at its root; supporting material in `references/` and
   `scripts/`.
 
+## State the boundary in the description
+
+Where a skill has a near-neighbor — another skill a reasonable request could also match — say
+which requests belong to the neighbor, in the description itself, by address: "Prefer
+`demand-generation:landing-page-cro-expert` when the subject is a marketing landing page."
+The description is the only thing routing reads, so a boundary stated anywhere else does not
+exist at the moment it matters.
+
 ## Verify before shipping
 
 Write three requests that should trigger it and two that should not, and check the description
 actually discriminates. If a near-miss request would pull it in, tighten the description.
+
+Where the skill library has an executable routing eval suite — this repository keeps one in
+`evals/routing/` — record those requests as cases instead of discarding them: the ones that
+should trigger as `expected`, the near-misses as cases for the neighbor with this skill in
+`forbidden`. A judgment written down once becomes a regression test; a judgment made in your
+head is remade, differently, by the next editor.

@@ -994,3 +994,123 @@ than assumed — an unproven guard is a comment claiming to be a guard.
 reports which rows defaulted, so a map that never considered the question stays distinguishable
 from one that answered it. The value here is not the single gated row; it is that the axis is now
 expressible and checked instead of remembered — the same argument that justified the surface map.
+
+---
+
+## D32. Skill namespace: globally unique names or unique per department — ✅ Resolved
+
+The public architecture says skills are addressed as `department:skill` and therefore never
+collide, but `validate-skills.py` rejected duplicate bare names globally. Both rules cannot be
+the model.
+
+- **(a) Uniqueness on `(department, skill)`; a cross-department bare-name duplicate is an
+  informational note.** ← **chosen**
+- (b) Keep global bare-name uniqueness and document it as the architecture.
+- (c) Keep global uniqueness but document it as a platform constraint rather than a design.
+
+**Resolution: (a).** Claude Code namespaces plugin skills by plugin: invocation is
+`/department:skill`, and its own tooling documents `plugin:skill` addressing with collisions
+between plugins resolved by qualification. A hypothetical `forecasting` skill in both
+`finance` and `operations` is valid, so a global check enforced a constraint the platform does
+not have —
+and worse, it contradicted the README's stated model, which is exactly the class of
+docs-vs-checks drift this repository exists to prevent. The validator now fails only on a
+duplicate `(department, skill)` address.
+
+**The note is kept deliberately.** A bare name in two departments is legal and still worth a
+curator's glance — two skills answering to the same short name invite overlapping
+descriptions, and overlap is a routing failure regardless of namespaces. The note prints; it
+does not fail. `tests/test_docs_current.py` pins the README and the validator to the same
+model so the two cannot diverge again silently.
+
+---
+
+## D33. One canonical department registry, and what is generated from it — ✅ Resolved
+
+Department metadata lived in four places: `build-readme.py`'s `META` dict and `REVIEWER` set,
+`.claude-plugin/marketplace.json`, and each plugin's manifest — with `build-org-chart.py`
+scraping the first out of the generator's source with a regex and `eval`. Audit before the
+change found five live divergences between the marketplace and the plugin manifests. Nothing
+failed.
+
+- (a) Keep the copies and add cross-consistency checks between all of them.
+- **(b) One canonical registry (`config/departments.json`); marketplace generated from it;
+  plugin manifests hand-written but validated field-for-field against it; generators read
+  it.** ← **chosen**
+- (c) Generate the plugin manifests too.
+
+**Resolution: (b).** JSON rather than YAML so validation stays dependency-free (D35). The
+marketplace is a pure function of the registry, so it is generated (`build-marketplace.py`,
+`--check` in CI) — generation makes that drift class impossible rather than detected. The
+plugin manifests stay hand-written because they live inside each department's exclusive write
+surface: generating them from a repo-meta-owned registry would put one agent's generator
+inside sixteen other agents' surfaces every run. Validation (`validate-catalog.py`) gives the
+same guarantee — a manifest cannot disagree with the registry and pass CI — without the
+ownership violation. (c) rejected for that reason; revisit only if the duplication cost grows
+past the boundary cost.
+
+The five drifted fields were repaired in favor of the plugin manifests, which carried the
+newer values.
+
+---
+
+## D34. Where live routing evals run — ✅ Resolved
+
+The routing evaluation framework has a deterministic half (fixture validation) and a live half
+(a real model routes every case). The live half costs API calls and needs a secret.
+
+- (a) Live evals on every pull request.
+- **(b) Deterministic validation on every PR; live evals manual (`workflow_dispatch`) and
+  local, with a schedule ready to enable once the secret exists.** ← **chosen**
+- (c) Local-only; no workflow.
+
+**Resolution: (b).** Ordinary contributions must never require paid API calls, and a public
+repository must not let fork PRs trigger workflows that touch secrets — the checks workflow
+already runs with read-only permissions for the same reason. (a) fails both. (c) throws away
+reproducibility for no saving. The split is the same one the repository already uses for
+rendering: cheap deterministic verification always, expensive generation on demand.
+`run-routing-evals.py` gates on `--threshold` so a scheduled run can fail meaningfully when
+enabled.
+
+---
+
+## D35. Dependency-free validation tooling — ✅ Resolved
+
+The eval framework, catalog validator, tests, and live runner all invited dependencies: a YAML
+parser for frontmatter, `jsonschema` for fixtures, `requests` or an SDK for the API, a test
+framework.
+
+- **(a) Standard library and built-in runners only: narrow purpose-built parsers, `unittest`,
+  `node --test`, `urllib`.** ← **chosen**
+- (b) Adopt a minimal dependency set with a lockfile.
+
+**Resolution: (a), continuing the standing posture** — the agent-guard comment has said it
+from the start: a dependency in enforcement code buys convenience and costs a supply-chain
+review on the one file whose job is enforcing rules. Concretely: frontmatter gets a
+deliberately narrow parser that rejects what it does not support, rather than a YAML library
+pretending the full spec is needed; eval fixtures get a hand-rolled checker, with
+`schema.json` kept as documentation for external tooling; tests run under `unittest` and
+`node --test`; the live runner speaks to the API over `urllib`. Zero manifests remains true —
+Dependabot still has nothing to scan (D23). **Revisit if** full YAML frontmatter ever becomes
+a real need (a skill legitimately requiring a list-valued key would be the signal), and record
+the reversal here.
+
+---
+
+## D36. Cross-harness adapters: build now or document as future — ✅ Resolved
+
+The skill corpus is not Claude-specific; the packaging is. Cursor, OpenCode, Pi, and
+Codex-style agents could in principle consume the same taxonomy.
+
+- (a) Build an adapter for at least one second harness now.
+- **(b) Document the adapter path in `docs/EXTENDING-HEADCOUNT.md`; build nothing; claim
+  compatibility with nothing.** ← **chosen**
+
+**Resolution: (b).** An adapter without users is speculative machinery — the exact shape D8
+warned about — and every harness differs in the places that matter (frontmatter conventions,
+description budgets, routing behavior), so honest support means running routing evals per
+target, multiplying the eval surface before the first one is mature. The credible enabling
+step was taken instead: department metadata is machine-readable in one place, so a future
+adapter is a consumer of `config/departments.json`, not an archaeology project. Claude Code
+remains the reference implementation. **Revisit at** a concrete external request with a named
+harness and a user attached.
