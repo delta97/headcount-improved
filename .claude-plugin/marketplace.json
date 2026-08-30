@@ -24,6 +24,23 @@
       "category": "executive"
     },
     {
+      "name": "chief-of-staff",
+      "source": "./plugins/chief-of-staff",
+      "description": "The owner's personal operating layer: open-item rollups, manager status updates, 1:1 preparation, AI portfolio operations, executive position papers, requirements-to-Jira decomposition, platform export formatting, and accomplishment tracking.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Chris Brock"
+      },
+      "keywords": [
+        "chief-of-staff",
+        "productivity",
+        "status-updates",
+        "portfolio",
+        "work-management"
+      ],
+      "category": "executive"
+    },
+    {
       "name": "technology",
       "source": "./plugins/technology",
       "description": "Architecture, engineering delivery, development discipline, debugging, review, and AI and automation systems.",

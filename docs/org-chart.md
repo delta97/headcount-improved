@@ -33,6 +33,7 @@ than into the function they oversee.
 | Department | Function | Executive | Skills |
 |---|---|---|---|
 | `executive` | Office of the CEO | Chief Executive | 6 |
+| `chief-of-staff` | Chief of Staff | CoS | 9 |
 | `technology` | Technology | CTO / CIO | 18 |
 | `security` | Security | CISO | 6 · reviewer-class |
 | `it-operations` | IT Operations | CIO | 8 |
@@ -49,7 +50,7 @@ than into the function they oversee.
 | `people` | People | CHRO | 10 |
 | `legal-risk` | Legal & Risk | CLO / CCO | 6 · reviewer-class |
 
-16 departments, 143 skills.
+17 departments, 152 skills.
 <!-- END GENERATED: departments -->
 
 ## Remaining gaps

@@ -4,8 +4,8 @@
 
 <p align="center">
   <a href="https://claude.com/claude-code"><img alt="Built for Claude Code" src="https://img.shields.io/badge/built%20for-Claude%20Code-D97757?style=flat-square"></a>
-  <img alt="16 departments" src="https://img.shields.io/badge/departments-16-3F4B5B?style=flat-square">
-  <img alt="143 skills" src="https://img.shields.io/badge/skills-143-3F4B5B?style=flat-square">
+  <img alt="17 departments" src="https://img.shields.io/badge/departments-17-3F4B5B?style=flat-square">
+  <img alt="152 skills" src="https://img.shields.io/badge/skills-152-3F4B5B?style=flat-square">
   <a href="LICENSE"><img alt="MIT licensed" src="https://img.shields.io/badge/license-MIT-3F4B5B?style=flat-square"></a>
   <a href="CONTRIBUTING.md"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-2EA043?style=flat-square"></a>
 </p>
@@ -14,7 +14,7 @@
   <a href="https://cbrock84.github.io/headcount/org-chart.html">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/assets/org-chart-dark.png">
-      <img alt="The headcount org chart — 16 departments, 143 skills, searchable" src="docs/assets/org-chart-light.png" width="840">
+      <img alt="The headcount org chart — 17 departments, 152 skills, searchable" src="docs/assets/org-chart-light.png" width="840">
     </picture>
   </a>
 </p>
@@ -24,7 +24,7 @@
 </p>
 
 An agent organization for [Claude Code](https://claude.com/claude-code), structured as a company:
-a chief executive over 16 departments, 143 skills in total.
+a chief executive over 17 departments, 152 skills in total.
 
 Every department is an independently installable plugin, so a project loads only the functions it
 needs rather than all of them at once.
@@ -80,6 +80,23 @@ to as a subagent with its own exclusive write surface.
 | `ceo-advisor` | Pressure-tests a decision, plan, or idea before it is committed to — surfacing the assumption it rests on, the case against it, and what would have to be true for i…. |
 | `chief-executive` | Sets direction, allocates capital and attention, and makes the calls no one else can make. |
 | `saas-idea-validator` | Evaluates a software or startup idea against problem, market, competition, monetization, defensibility, and execution, and returns a verdict rather than encourageme…. |
+
+</details>
+
+<details>
+<summary><b>Chief of Staff</b> (CoS) — 9 skills</summary>
+
+| Skill | What it does |
+|---|---|
+| `accomplishments-log` | Harvests shipped work, decisions won, and measurable outcomes from the weekly notes into the standing accomplishments page, framed as impact rather than activity, s…. |
+| `ai-portfolio-tracker` | Builds and operates the AI initiative portfolio database — intake scoring, Value and TCO ordering, decision statuses, WIP limits — and generates the recurring portf…. |
+| `chief-of-staff` | Runs the owner's personal operating rhythm — the weekly cadence of rollups, status updates, 1:1 preparation, and portfolio reviews — and routes work-management requ…. |
+| `exec-position-paper` | Writes executive position papers and framework recommendation documents in the owner's proven structures — the argumentative overview that turns stakeholder pushbac…. |
+| `manager-state-of-the-union` | Assembles the periodic manager update — a bottom-line-up-front state of the union covering roughly two weeks of work — from the four artifacts of record: weekly Not…. |
+| `one-on-one-prep` | Builds the agenda for a recurring 1:1 with a named colleague by harvesting everything involving them from recent notes — open items they own or are owed, decisions…. |
+| `open-items-rollup` | Regenerates the consolidated open-items page from the weekly Notion notes pages — sweeping unchecked todos, grouping them by workstream, tiering by urgency, and fla…. |
+| `paid-media-platform-exports` | Reformats PMP campaign-targeting exports into each ad platform's required upload format, applying the per-platform quirks that make the manual version error-prone —…. |
+| `requirements-to-jira` | Decomposes a requirements document or a todo line into a Jira epic with its full ticket tree — user stories, subtasks, assignees, and sprint placement — ready to cr…. |
 
 </details>
 
