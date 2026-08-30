@@ -65,21 +65,24 @@ parsing markdown.
 
 ## Cross-harness support
 
-The skill corpus and department taxonomy are not Claude-specific; the packaging is. Future
-adapters could translate canonical Headcount metadata into other harnesses' formats:
+The skill corpus and department taxonomy are not Claude-specific; the packaging is. The first
+adapter exists (D37): `scripts/package/` flattens the canonical tree into a Codex/Agent-Skills
+package under `dist/` (gitignored — packages are derived artifacts, never committed), and
+`scripts/install/` plus `platforms/codex/` install it safely into a target. Further adapters
+would follow the same shape — a builder that consumes `config/departments.json` and the
+canonical skill directories, a validator that proves the package matches the source, and the
+shared installer core:
 
 ```
-adapters/
-  claude-code/     the reference implementation — what exists today
-  cursor/
-  opencode/
-  pi/
+scripts/package/   builders + package validator (codex today)
+scripts/install/   one install engine, CLI on top
+platforms/codex/   GUI wrapper and user documentation
 ```
 
-No drop-in compatibility is claimed with any of these. An adapter is a real translation —
-frontmatter conventions, description length budgets, and routing behavior all differ per
-harness — and the routing evals would need to run per target to mean anything there. Claude
-Code remains the reference implementation unless the project deliberately broadens.
+No drop-in *routing* quality is claimed for any non-Claude harness. An adapter is a real
+translation — frontmatter conventions, description length budgets, and routing behavior all
+differ per harness — and the routing evals would need to run per target to mean anything
+there. Claude Code remains the reference implementation.
 
 ## Skill quality scoring
 

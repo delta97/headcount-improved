@@ -149,6 +149,7 @@ docs/**
 scripts/**
 config/**
 evals/**
+platforms/**
 tests/**
 .github/**
 .claude/**
