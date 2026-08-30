@@ -21,6 +21,10 @@ run "Surface map is coherent" \
   node plugins/executive/skills/agent-hierarchy/scripts/agent-guard.mjs check
 run "Skill frontmatter is valid" \
   python3 scripts/validate-skills.py
+run "Catalog is consistent" \
+  python3 scripts/validate-catalog.py
+run "Marketplace is current" \
+  python3 scripts/build-marketplace.py --check
 run "No third-party license text" \
   python3 scripts/check-provenance.py
 run "README is current" \

@@ -33,12 +33,15 @@ REPO = "cbrock84/headcount"
 BLOB = f"https://github.com/{REPO}/blob/main"
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-# META and REVIEWER live in build-readme.py, which is not importable under that filename.
-# Read them out of it rather than keeping a second copy that can disagree.
-_src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "build-readme.py"),
-            encoding="utf-8").read()
-META = eval(re.search(r"^META = (\{.*?^\})", _src, re.S | re.M).group(1))
-REVIEWER = eval(re.search(r"^REVIEWER = (\{.*?\})", _src, re.M).group(1))
+# Department display metadata comes from the canonical registry, the same source the README
+# generator and the marketplace use — one copy, so the two documents cannot disagree. This
+# replaced a regex-and-eval extraction of build-readme.py's source, which broke the moment
+# that file stopped holding the dictionary it was being scraped for.
+import registry
+
+_DEPTS = registry.departments()
+META = {d["id"]: (d["rank"], d["title"], d["executive"]) for d in _DEPTS}
+REVIEWER = {d["id"] for d in _DEPTS if d["reviewer_class"]}
 
 # One glyph per department, drawn on a 24x24 grid in a single stroke weight so sixteen cards read
 # as one set rather than sixteen clip-arts. Sixteen identical rectangles distinguished only by

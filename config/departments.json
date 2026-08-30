@@ -1,53 +1,54 @@
 {
-  "name": "headcount",
-  "owner": {
-    "name": "Chris Brock"
-  },
-  "metadata": {
+  "marketplace": {
+    "name": "headcount",
+    "owner": {
+      "name": "Chris Brock"
+    },
     "description": "An agent organization structured as a C-suite hierarchy. Each department installs independently so only the relevant function loads.",
     "version": "1.0.0"
   },
-  "plugins": [
+  "departments": [
     {
-      "name": "executive",
-      "source": "./plugins/executive",
+      "id": "executive",
+      "title": "Office of the CEO",
+      "executive": "Chief Executive",
+      "rank": 10,
+      "category": "executive",
+      "reviewer_class": false,
       "description": "Direction, capital and attention allocation, cross-functional arbitration, strategy validation, and the method for structuring the organization itself.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "strategy",
         "executive",
         "decision-making"
-      ],
-      "category": "executive"
+      ]
     },
     {
-      "name": "technology",
-      "source": "./plugins/technology",
+      "id": "technology",
+      "title": "Technology",
+      "executive": "CTO / CIO",
+      "rank": 20,
+      "category": "technology",
+      "reviewer_class": false,
       "description": "Architecture, engineering delivery, development discipline, debugging, review, and AI and automation systems.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "engineering",
         "tdd",
         "debugging",
         "code-review",
         "automation"
-      ],
-      "category": "technology"
+      ]
     },
     {
-      "name": "security",
-      "source": "./plugins/security",
+      "id": "security",
+      "title": "Security",
+      "executive": "CISO",
+      "rank": 30,
+      "category": "security",
+      "reviewer_class": true,
       "description": "Threat modeling, security architecture review, incident response, vulnerability management, and access and identity. Reviewer-class: blocking findings are not overrulable by the department under review.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "security",
         "appsec",
@@ -55,68 +56,68 @@
         "incident-response",
         "vulnerability-management",
         "identity"
-      ],
-      "category": "security"
+      ]
     },
     {
-      "name": "it-operations",
-      "source": "./plugins/it-operations",
+      "id": "it-operations",
+      "title": "IT Operations",
+      "executive": "CIO",
+      "rank": 35,
+      "category": "technology",
+      "reviewer_class": false,
       "description": "Corporate IT: service desk, systems and network administration, endpoints, assets, identity lifecycle, and backup and recovery.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "it-operations",
         "service-desk",
         "sysadmin",
         "network",
         "endpoint-management"
-      ],
-      "category": "technology"
+      ]
     },
     {
-      "name": "product",
-      "source": "./plugins/product",
+      "id": "product",
+      "title": "Product",
+      "executive": "CPO",
+      "rank": 40,
+      "category": "product",
+      "reviewer_class": false,
       "description": "Product strategy, UX and usability audit, design systems, interface craft, brand expression, and visual direction.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "product",
         "ux",
         "design",
         "design-system",
         "brand"
-      ],
-      "category": "product"
+      ]
     },
     {
-      "name": "marketing",
-      "source": "./plugins/marketing",
+      "id": "marketing",
+      "title": "Marketing",
+      "executive": "CMO",
+      "rank": 50,
+      "category": "marketing",
+      "reviewer_class": false,
       "description": "Positioning, content strategy and production, social and video, brand voice, copywriting, PR, and partnerships.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "marketing",
         "content",
         "brand",
         "social",
         "communications"
-      ],
-      "category": "marketing"
+      ]
     },
     {
-      "name": "demand-generation",
-      "source": "./plugins/demand-generation",
+      "id": "demand-generation",
+      "title": "Demand Generation",
+      "executive": "CMO",
+      "rank": 60,
+      "category": "demand-generation",
+      "reviewer_class": false,
       "description": "Organic and paid acquisition, conversion, measurement, experimentation, lifecycle messaging, and distribution.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "seo",
         "paid-ads",
@@ -124,100 +125,100 @@
         "analytics",
         "lifecycle",
         "growth"
-      ],
-      "category": "demand-generation"
+      ]
     },
     {
-      "name": "revenue",
-      "source": "./plugins/revenue",
+      "id": "revenue",
+      "title": "Revenue",
+      "executive": "CRO",
+      "rank": 70,
+      "category": "revenue",
+      "reviewer_class": false,
       "description": "Outbound, sales enablement, revenue operations, pricing and packaging, activation, retention, and referrals.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "sales",
         "pricing",
         "revenue",
         "retention",
         "revops"
-      ],
-      "category": "revenue"
+      ]
     },
     {
-      "name": "finance",
-      "source": "./plugins/finance",
+      "id": "finance",
+      "title": "Finance",
+      "executive": "CFO",
+      "rank": 80,
+      "category": "finance",
+      "reviewer_class": false,
       "description": "Financial modeling, budgeting and forecasting, unit economics, and financial decision support.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "finance",
         "budgeting",
         "forecasting",
         "unit-economics"
-      ],
-      "category": "finance"
+      ]
     },
     {
-      "name": "operations",
-      "source": "./plugins/operations",
+      "id": "operations",
+      "title": "Operations",
+      "executive": "COO",
+      "rank": 90,
+      "category": "operations",
+      "reviewer_class": false,
       "description": "Program management, process design, vendor and supplier management, and operational delivery.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "operations",
         "process",
         "program-management",
         "vendors"
-      ],
-      "category": "operations"
+      ]
     },
     {
-      "name": "pmo",
-      "source": "./plugins/pmo",
+      "id": "pmo",
+      "title": "Program Management Office",
+      "executive": "EPMO / COO",
+      "rank": 95,
+      "category": "operations",
+      "reviewer_class": false,
       "description": "Enterprise program management office: portfolio governance, program and project delivery, dependencies and delivery risk, benefits realization, and adoption.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "pmo",
         "portfolio",
         "project-management",
         "program-management",
         "delivery"
-      ],
-      "category": "operations"
+      ]
     },
     {
-      "name": "customer-experience",
-      "source": "./plugins/customer-experience",
+      "id": "customer-experience",
+      "title": "Customer Experience",
+      "executive": "CCO",
+      "rank": 100,
+      "category": "customer-experience",
+      "reviewer_class": false,
       "description": "Support operations, escalation management, voice of customer, and self-service. Owns what the customer experiences after the sale.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "support",
         "customer-success",
         "escalation",
         "voice-of-customer",
         "service"
-      ],
-      "category": "customer-experience"
+      ]
     },
     {
-      "name": "data-analytics",
-      "source": "./plugins/data-analytics",
+      "id": "data-analytics",
+      "title": "Data & Analytics",
+      "executive": "CDO",
+      "rank": 110,
+      "category": "data-analytics",
+      "reviewer_class": false,
       "description": "Data governance, warehouse and semantic modeling, business intelligence, and AI/ML governance.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "data",
         "analytics",
@@ -225,59 +226,58 @@
         "warehouse",
         "business-intelligence",
         "ai-governance"
-      ],
-      "category": "data-analytics"
+      ]
     },
     {
-      "name": "corporate-strategy",
-      "source": "./plugins/corporate-strategy",
+      "id": "corporate-strategy",
+      "title": "Corporate Strategy",
+      "executive": "CSO",
+      "rank": 120,
+      "category": "corporate-strategy",
+      "reviewer_class": false,
       "description": "Portfolio strategy, corporate development, strategic alliances, and scenario planning.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "strategy",
         "corp-dev",
         "m-and-a",
         "partnerships",
         "scenario-planning"
-      ],
-      "category": "corporate-strategy"
+      ]
     },
     {
-      "name": "people",
-      "source": "./plugins/people",
+      "id": "people",
+      "title": "People",
+      "executive": "CHRO",
+      "rank": 130,
+      "category": "people",
+      "reviewer_class": false,
       "description": "Org design, hiring and interviewing, compensation and leveling, and workforce planning.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "people",
         "hr",
         "org-design",
         "hiring",
         "compensation"
-      ],
-      "category": "people"
+      ]
     },
     {
-      "name": "legal-risk",
-      "source": "./plugins/legal-risk",
+      "id": "legal-risk",
+      "title": "Legal & Risk",
+      "executive": "CLO / CCO",
+      "rank": 140,
+      "category": "legal-risk",
+      "reviewer_class": true,
       "description": "Contract review, privacy and data protection, enterprise risk, corporate governance, compliance, and audit readiness. Reviewer-class: its findings are not overrulable by the department under review.",
       "version": "1.0.0",
-      "author": {
-        "name": "Chris Brock"
-      },
       "keywords": [
         "legal",
         "privacy",
         "risk",
         "compliance",
         "contracts"
-      ],
-      "category": "legal-risk"
+      ]
     }
   ]
 }
