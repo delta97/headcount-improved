@@ -47,7 +47,8 @@ right specialist engages:
 | You ask | What loads |
 |---|---|
 | "why isn't this landing page converting?" | `demand-generation:landing-page-cro-expert` |
-| "review this design before we build it" | `security:threat-modeling` |
+| "review this onboarding flow before we build it" | `product:ux-product-auditor` |
+| "review this authentication architecture before we build it" | `security:threat-modeling` |
 | "can we afford this hire?" | `finance:unit-economics` |
 | "our growth has stalled" | `executive:business-growth-consultant` |
 

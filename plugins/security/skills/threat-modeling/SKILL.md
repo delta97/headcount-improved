@@ -1,6 +1,6 @@
 ---
 name: threat-modeling
-description: Identifies what could go wrong in a system before it is built or changed — the assets worth attacking, the entry points, the trust boundaries, and the controls that actually address the realistic threats. Use this when designing a feature or system, when a change touches authentication, data handling, payments, or external input, before a security review, or when deciding which security work is worth doing at all.
+description: Identifies what could go wrong in a system before it is built or changed — the assets worth attacking, the entry points, the trust boundaries, and the controls that actually address the realistic threats. Use this when designing a feature or system, when a change touches authentication, data handling, payments, or external input, before a security review, or when deciding which security work is worth doing at all. For judging a finished design rather than enumerating what could go wrong, use `security-architecture-review`.
 ---
 
 # Threat modeling

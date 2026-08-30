@@ -1,6 +1,6 @@
 ---
 name: cloud-infrastructure
-description: Designs and runs cloud infrastructure — environments, infrastructure as code, networking and isolation, scaling, and cost. Use this to design a cloud environment, control infrastructure spend, set up environment separation, plan for scale or region failure, or review infrastructure someone configured by hand.
+description: Designs and runs cloud infrastructure — environments, infrastructure as code, networking and isolation, scaling, and cost. Use this to design a cloud environment, control infrastructure spend, set up environment separation, plan for scale or region failure, or review infrastructure someone configured by hand. For operating the corporate systems a company works on, rather than the infrastructure of what it sells, prefer `it-operations:systems-administration`.
 ---
 
 # Cloud infrastructure

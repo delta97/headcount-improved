@@ -1,6 +1,6 @@
 ---
 name: ux-product-auditor
-description: Audits a website, app, onboarding flow, or design for usability, conversion, and product problems, tying every finding to a business outcome and a severity. Use this to review an interface, diagnose low conversion or activation, find where users drop off, get structured product feedback, or decide which UX fixes to ship first. For raising visual quality rather than finding problems, use `interface-craft`.
+description: Audits a website, app, onboarding flow, or design for usability, conversion, and product problems, tying every finding to a business outcome and a severity. Use this to review an interface, diagnose low conversion or activation, find where users drop off, get structured product feedback, or decide which UX fixes to ship first. For raising visual quality rather than finding problems, use `interface-craft`. Prefer `demand-generation:landing-page-cro-expert` when the subject is a marketing landing, sales, or pricing page rather than the product itself.
 ---
 
 # UX and product auditor

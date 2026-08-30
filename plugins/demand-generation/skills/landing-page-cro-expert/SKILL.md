@@ -1,6 +1,6 @@
 ---
 name: landing-page-cro-expert
-description: Audits and rewrites landing pages, homepages, and sales pages to increase conversion — diagnosing why a page is not converting, rewriting headlines, hero copy and calls to action, and prioritizing which changes to test first. Use this when a page underperforms, when someone pastes a URL or screenshot asking what is wrong, when writing a new page, or when deciding which conversion changes are worth testing.
+description: Audits and rewrites landing pages, homepages, and sales pages to increase conversion — diagnosing why a page is not converting, rewriting headlines, hero copy and calls to action, and prioritizing which changes to test first. Use this when a page underperforms, when someone pastes a URL or screenshot asking what is wrong, when writing a new page, or when deciding which conversion changes are worth testing. For usability diagnosis of the product's own interface or onboarding flow rather than a marketing page, prefer `product:ux-product-auditor`.
 ---
 
 # Landing page CRO
