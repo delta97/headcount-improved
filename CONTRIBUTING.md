@@ -66,6 +66,7 @@ this table and `check-all.sh` disagree, so the list below is the executed list.)
 | Social card is current | The social card matches regeneration |
 | Org chart is current | The interactive org chart matches regeneration |
 | Routing eval fixtures are valid | Every eval case resolves, coverage is complete or explicitly declined |
+| Codex package builds and validates | The flattened runtime package derives cleanly from the canonical tree and matches it file for file (D37) |
 | Skill references resolve | Every `department:skill` mentioned in the docs exists |
 | US English spelling | House style — no British spellings |
 | Manifests parse | Marketplace and plugin manifests are valid JSON |

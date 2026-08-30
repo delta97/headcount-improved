@@ -41,6 +41,10 @@ run "Org chart is current" \
   python3 scripts/build-org-chart.py --check
 run "Routing eval fixtures are valid" \
   python3 scripts/validate-routing-evals.py
+# The package is a derived artifact (D37): nothing is committed, so the only way it can rot
+# is if the build or the validator breaks — build to a throwaway directory and prove parity.
+run "Codex package builds and validates" \
+  bash -c 'tmp=$(mktemp -d); trap "rm -rf \"$tmp\"" EXIT; python3 scripts/package/codex.py --output "$tmp/codex" >/dev/null && python3 scripts/package/validate.py "$tmp/codex"'
 run "Skill references resolve" \
   python3 scripts/check-skill-refs.py
 run "US English spelling" \
