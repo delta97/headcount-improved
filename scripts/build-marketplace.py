@@ -55,6 +55,7 @@ def main():
             return 1
         print("marketplace is current")
         return 0
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
         f.write(content)
     print(f"{OUT} regenerated — {len(registry.departments())} plugins")
