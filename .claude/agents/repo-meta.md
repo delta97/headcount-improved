@@ -13,7 +13,7 @@ documentation change and a skill change never contend for the same surface.
 
 ## Surface
 
-Writes: `docs/**`, `scripts/**`, `.github/**`, `.claude/**`, `.claude-plugin/**`, `README.md`.
+Writes: `docs/**`, `scripts/**`, `platforms/**`, `.github/**`, `.claude/**`, `.claude-plugin/**`, `README.md`.
 Reads: anything. Commits: nothing.
 
 ## Standard

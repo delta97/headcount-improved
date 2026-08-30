@@ -1114,3 +1114,41 @@ step was taken instead: department metadata is machine-readable in one place, so
 adapter is a consumer of `config/departments.json`, not an archaeology project. Claude Code
 remains the reference implementation. **Revisit at** a concrete external request with a named
 harness and a user attached.
+
+---
+
+## D37. Codex packaging and installer: canonical source, generated artifacts — ✅ Resolved
+
+D36 deferred cross-harness adapters until "a concrete external request with a named harness."
+That request arrived: a reviewed implementation plan (derived from upstream PR #18, "Packaged
+for Codex with GUI installer") asking for Codex/Agent-Skills packaging and an installer. The
+question is how to deliver it without creating the second source of truth PR #18 would have
+committed (a full generated copy of the skill tree, ~22.9k lines, with no drift check).
+
+- **(a) Packages are derived artifacts, never committed.** A builder flattens the canonical
+  tree into `dist/` (gitignored) on demand; CI builds and validates the package on every run;
+  releases publish the archive. The installer consumes a built package and records what it
+  owns in a target-side manifest. ← **chosen**
+- (b) Commit the generated Codex tree with a `--check` drift gate, for offline installs.
+- (c) Hold to D36(b): document, build nothing.
+
+**Resolution: (a).** The rules this settles:
+
+- **Canonical vs generated.** `plugins/**`, `.claude/agents/**`, and `config/departments.json`
+  remain the only sources of truth. `scripts/package/` derives the Codex package from them;
+  nothing under `dist/` is ever edited or committed.
+- **Flattening vs D32.** D32 stands: bare skill names are unique per department in the
+  canonical tree, and a cross-department duplicate is a note, not a failure. A flattened
+  Agent-Skills layout cannot represent that namespace, so the *package build* — not the
+  repository validator — fails on a bare-name collision, with the portability reason stated.
+  The canonical tree currently has zero collisions.
+- **Installer safety.** No existing `.agents/` or user file is ever silently deleted: installs
+  merge or abort, destructive replacement requires `--force` plus a timestamped backup, and a
+  target-side install manifest (`.headcount-install.json`) is the sole authority for what
+  Headcount owns during update and uninstall. GUI and CLI are thin wrappers over one tested
+  core.
+- **No new dependencies.** D35 stands; builder, validator, and installer are stdlib-only.
+
+Claude Code remains the reference implementation; routing evals still measure only the Claude
+runtime, and no routing quality is claimed for Codex (D36's caution about per-target evals
+stands unchanged).

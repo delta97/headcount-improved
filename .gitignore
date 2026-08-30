@@ -2,3 +2,8 @@
 # untracked __pycache__ is enough to make a clean tree look dirty.
 __pycache__/
 *.pyc
+
+# Built runtime packages are derived artifacts (see D37). They are generated from the
+# canonical tree on demand and published from CI — a committed copy would be a second
+# source of truth that drifts.
+dist/
